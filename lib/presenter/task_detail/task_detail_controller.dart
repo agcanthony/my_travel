@@ -83,29 +83,6 @@ class TaskDetailController extends GetxController {
     }
   }
 
-  /*  Future<void> addImageToTask(String image) async {
-    try {
-      String userId = AuthController.to.firebaseAuth.currentUser!.uid;
-
-      ImageModel imageModel = ImageModel(
-        userId: userId,
-        imageUrls: [image],
-      );
-
-      await db
-          .collection('travels')
-          .doc(travelId)
-          .collection('tasks')
-          .doc(taskName)
-          .collection('images')
-          .add(imageModel.toMap());
-
-      await getImagesData(taskId);
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-  } */
-
   Future<void> getImagesData(String id) async {
     try {
       String userId = AuthController.to.firebaseAuth.currentUser!.uid;
@@ -129,28 +106,6 @@ class TaskDetailController extends GetxController {
     }
   }
 
-  /* Future<void> getImagesData(String id) async {
-    try {
-      String userId = AuthController.to.firebaseAuth.currentUser!.uid;
-      QuerySnapshot _imagesSnap = await db
-          .collection('travels/$id/tasks/$taskName/images')
-          .where('userId', isEqualTo: userId)
-          .orderBy('imageUrls')
-          .get();
-
-      imagesList.clear();
-
-      for (var item in _imagesSnap.docs) {
-        imagesList.addAll(List<String>.from(item['imageUrls'] ?? []));
-      }
-
-      isLoading = false;
-      update();
-    } catch (e) {
-      print(e.toString());
-    }
-  }
- */
   var selectedImagePath = ''.obs;
   var cropImagePath = ''.obs;
 

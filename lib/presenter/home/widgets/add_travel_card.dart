@@ -51,34 +51,6 @@ class AddTravelCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              /* ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                ),
-                child: StepProgressIndicator(
-                  totalSteps: totalSteps,
-                  currentStep: currentStep,
-                  size: 10,
-                  padding: 0,
-                  selectedGradientColor: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      grenn,
-                      grenn.withOpacity(0.8),
-                    ],
-                  ),
-                  unselectedGradientColor: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      quartz.withOpacity(0.5),
-                      lilyWhite.withOpacity(0.3),
-                    ],
-                  ),
-                ),
-              ), */
               SizedBox(height: 5.0.wp),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 3.0.wp),

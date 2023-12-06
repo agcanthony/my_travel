@@ -82,15 +82,12 @@ class DetailsController extends GetxController {
       tasksList.clear();
 
       for (var item in _taskSnap.docs) {
-        /*   Timestamp timestamp = item['dateTime'];
-        DateTime dateTime = timestamp.toDate(); // */
         tasksList.add(
           TasksModel(
             id,
             item['isDone'],
             item['task'],
             description: 'description',
-            // dateTime: dateTime,
           ),
         );
       }
@@ -113,7 +110,6 @@ class DetailsController extends GetxController {
       if (dateText.isNotEmpty && timeText.isNotEmpty) {
         dateTime = DateFormat('dd/MM/yyyy HH:mm').parse('$dateText $timeText');
       } else if (dateText.isNotEmpty) {
-        //dateTime = DateFormat('dd/MM/yyyy HH:mm').parse('$dateText $timeText');
         dateTime = DateFormat('dd/MM/yyyy HH:mm').parse('$dateText $timeText');
       }
 
@@ -127,7 +123,6 @@ class DetailsController extends GetxController {
 
       await addTasksInTravel(tasksModel);
 
-      //tasksList.add(tasksModel);
       update();
 
       taskController.clear();

@@ -7,7 +7,6 @@ class SplashController extends GetxController {
   loading() async {
     await Future.delayed(const Duration(seconds: 3));
     Get.offAllNamed(LoginPage.routeName);
-    //AuthController.to.initialize();
   }
 
   @override
