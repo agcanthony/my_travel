@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 import '../../infra/models/tasks_model.dart';
@@ -22,7 +23,7 @@ class ReportController extends GetxController {
     try {
       isLoading = true;
       String userId = AuthController.to.firebaseAuth.currentUser?.uid ?? '';
-      QuerySnapshot _taskSnap = await db
+      QuerySnapshot taskSnap = await db
           .collection('travels')
           .where('userId', isEqualTo: userId)
           .orderBy('travel')
@@ -30,7 +31,7 @@ class ReportController extends GetxController {
 
       travelsList.clear();
 
-      for (var item in _taskSnap.docs) {
+      for (var item in taskSnap.docs) {
         TravelsModel travelsModel = TravelsModel(
           item.id,
           item['travel'],
@@ -57,7 +58,9 @@ class ReportController extends GetxController {
       isLoading = false;
       update();
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
   }
 

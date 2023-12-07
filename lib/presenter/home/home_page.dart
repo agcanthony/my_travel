@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -35,18 +36,21 @@ class HomePage extends GetView<HomeController> {
           GetBuilder<HomeController>(
             builder: (control) {
               return PopupMenuButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_drop_down_circle_outlined,
                   color: lilyWhite,
                 ),
                 onSelected: (v) {
                   control.onSelected(v);
 
-                  print(v);
+                  if (kDebugMode) {
+                    print(v);
+                  }
                 },
                 itemBuilder: (BuildContext bc) {
                   return [
                     PopupMenuItem(
+                      value: '/Bye',
                       child: TextButton.icon(
                         onPressed: () {
                           AuthController.to.logout();
@@ -60,9 +64,9 @@ class HomePage extends GetView<HomeController> {
                           color: changeTheme ? lilyWhite : black,
                         ),
                       ),
-                      value: '/Bye',
                     ),
                     PopupMenuItem(
+                      value: '/Theme',
                       child: TextButton.icon(
                         onPressed: () {
                           controller.changeTheme();
@@ -79,7 +83,6 @@ class HomePage extends GetView<HomeController> {
                           color: changeTheme ? lilyWhite : black,
                         ),
                       ),
-                      value: '/Theme',
                     ),
                   ];
                 },
@@ -149,7 +152,9 @@ class HomePage extends GetView<HomeController> {
                                           'id': element.id,
                                           'taskName': element.travel,
                                         });
-                                    print(element.id);
+                                    if (kDebugMode) {
+                                      print(element.id);
+                                    }
                                   },
                                   travel: element,
                                   cardColor: element.color,
@@ -178,7 +183,7 @@ class HomePage extends GetView<HomeController> {
                 )
               ],
             ),
-            ReportPage(),
+            const ReportPage(),
           ],
         ),
       ),

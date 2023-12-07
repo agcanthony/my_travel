@@ -1,4 +1,7 @@
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -62,7 +65,9 @@ class DetailsController extends GetxController {
           .doc(tasksModel.task)
           .set(taskData)
           .then((value) async {
-        print('task ${tasksModel.task}');
+        if (kDebugMode) {
+          print('task ${tasksModel.task}');
+        }
         await getTasksData(tasksModel.id);
       });
     } catch (e) {
@@ -73,7 +78,7 @@ class DetailsController extends GetxController {
   Future<void> getTasksData(String id) async {
     try {
       String userId = AuthController.to.firebaseAuth.currentUser!.uid;
-      QuerySnapshot _taskSnap = await db
+      QuerySnapshot taskSnap = await db
           .collection('travels/${id != '' ? id : null}/tasks')
           .where('userId', isEqualTo: userId)
           .orderBy('task')
@@ -81,7 +86,7 @@ class DetailsController extends GetxController {
 
       tasksList.clear();
 
-      for (var item in _taskSnap.docs) {
+      for (var item in taskSnap.docs) {
         tasksList.add(
           TasksModel(
             id,
@@ -94,7 +99,9 @@ class DetailsController extends GetxController {
       isLoading = false;
       update();
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
   }
 
@@ -207,13 +214,13 @@ class DetailsController extends GetxController {
             Get.back(result: true);
             EasyLoading.showToast('Tarefa deletada com sucesso!');
           },
-          child: Text('Sim'),
+          child: const Text('Sim'),
         ),
         TextButton(
           onPressed: () {
             Get.back(result: false);
           },
-          child: Text('Não'),
+          child: const Text('Não'),
         ),
       ],
     );

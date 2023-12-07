@@ -6,7 +6,7 @@ import '../../../core/app_colors.dart';
 
 class AddCard extends StatelessWidget {
   final VoidCallback onTap;
-  AddCard({Key? key, required this.onTap}) : super(key: key);
+  const AddCard({Key? key, required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

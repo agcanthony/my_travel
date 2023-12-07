@@ -34,7 +34,7 @@ class LoginPage extends StatelessWidget {
                       color: changeTheme
                           ? scaffoldDarkBackground
                           : lightScaffoldBackground(context),
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(40),
                         topRight: Radius.circular(40),
                       ),
@@ -55,7 +55,7 @@ class LoginPage extends StatelessWidget {
                             controller: control.emailController,
                             textInputAction: TextInputAction.done,
                             keyboardType: TextInputType.emailAddress,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               label: Text('Email'),
                             ),
                           ),
@@ -73,10 +73,10 @@ class LoginPage extends StatelessWidget {
                             keyboardType: TextInputType.text,
                             controller: control.passwordController,
                             decoration: InputDecoration(
-                              label: Text('Senha'),
+                              label: const Text('Senha'),
                               suffixIcon: IconButton(
                                 onPressed: () {},
-                                icon: Icon(Icons.visibility_rounded),
+                                icon: const Icon(Icons.visibility_rounded),
                               ),
                             ),
                           ),
@@ -85,7 +85,7 @@ class LoginPage extends StatelessWidget {
                             onPressed: () {
                               control.login(control.email, control.password);
                             },
-                            child: Text('Sign In'),
+                            child: const Text('Sign In'),
                           ),
                           const SizedBox(height: 24),
                           TextButton(
@@ -97,10 +97,10 @@ class LoginPage extends StatelessWidget {
                                   color: changeTheme ? lilyWhite : black,
                                   fontSize: 16,
                                 ),
-                                children: [
+                                children: const [
                                   TextSpan(
                                     text: "Sign Up",
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       color: defaultIconColor,
                                       fontSize: 16,
                                     ),

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -10,7 +11,7 @@ import '../../../core/primary_text.dart';
 import '../../../infra/models/tasks_model.dart';
 
 class DoingList extends StatelessWidget {
-  DoingList({Key? key}) : super(key: key);
+  const DoingList({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final changeTheme = Theme.of(context).brightness == Brightness.dark;
@@ -21,7 +22,7 @@ class DoingList extends StatelessWidget {
           return Lottie.asset(done);
         }
         return ListView.builder(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           shrinkWrap: true,
           itemCount: tasksList.length,
           itemBuilder: (context, index) {
@@ -33,7 +34,9 @@ class DoingList extends StatelessWidget {
                   'taskName': taskModel.task,
                   'travelId': control.taskId
                 });
-                print(taskModel.id);
+                if (kDebugMode) {
+                  print(taskModel.id);
+                }
               },
               onLongPress: () async {
                 control.deleteTask(taskModel);
@@ -66,9 +69,11 @@ class DoingList extends StatelessWidget {
                     'taskName': taskModel.task,
                     'travelId': control.taskId
                   });
-                  print(taskModel.id);
+                  if (kDebugMode) {
+                    print(taskModel.id);
+                  }
                 },
-                icon: Icon(Icons.chevron_right_rounded),
+                icon: const Icon(Icons.chevron_right_rounded),
               ),
             );
           },

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -28,7 +29,7 @@ class TaskDetail extends StatelessWidget {
           onPressed: () {
             Get.back();
           },
-          icon: Icon(Icons.chevron_left_rounded),
+          icon: const Icon(Icons.chevron_left_rounded),
         ),
         title: Text(taskName),
       ),
@@ -46,7 +47,7 @@ class TaskDetail extends StatelessWidget {
                   );
                 },
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               GetBuilder<TaskDetailController>(
                 builder: (control) {
                   return PrimaryText(
@@ -55,38 +56,42 @@ class TaskDetail extends StatelessWidget {
                   );
                 },
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Expanded(
                 child: GetBuilder<TaskDetailController>(
-                  builder: (_controller) {
+                  builder: (controller) {
                     return GridView(
-                      physics: BouncingScrollPhysics(),
+                      physics: const BouncingScrollPhysics(),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 5.0.wp,
                         mainAxisSpacing: 5.0.wp,
                       ),
                       children: [
-                        ..._controller.imagesList
+                        ...controller.imagesList
                             .asMap()
                             .map(
                               (index, e) {
-                                print('URL da imagem: $e');
-                                print(
-                                    'Caminho da imagem no dispositivo: ${File(e).path}');
+                                if (kDebugMode) {
+                                  print('URL da imagem: $e');
+                                }
+                                if (kDebugMode) {
+                                  print(
+                                      'Caminho da imagem no dispositivo: ${File(e).path}');
+                                }
                                 return MapEntry(
                                   index,
                                   GestureDetector(
                                     onLongPress: () {
-                                      _controller.showDeleteConfirmationDialog(
+                                      controller.showDeleteConfirmationDialog(
                                         context,
-                                        _controller,
+                                        controller,
                                         e,
                                       );
                                     },
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(30),
-                                      child: Container(
+                                      child: SizedBox(
                                         width:
                                             MediaQuery.of(context).size.width,
                                         child: FullScreenWidget(
@@ -119,7 +124,7 @@ class TaskDetail extends StatelessWidget {
                             .values
                             .toList(),
                         AddPhoto(
-                          onTap: () => _controller.getCameraOrGallery(context),
+                          onTap: () => controller.getCameraOrGallery(context),
                         ),
                       ],
                     );

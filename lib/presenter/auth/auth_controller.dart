@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_travels/core/app_colors.dart';
@@ -38,7 +39,7 @@ class AuthController extends GetxController {
 
   void navigateSignup() async {
     if (firebaseAuth.currentUser == null) {
-      Get.to(() => SignupPage());
+      Get.to(() => const SignupPage());
     }
   }
 
@@ -115,7 +116,9 @@ class AuthController extends GetxController {
 
       return true;
     } catch (e) {
-      print('Error authenticating with password: $e');
+      if (kDebugMode) {
+        print('Error authenticating with password: $e');
+      }
       return false;
     }
   }

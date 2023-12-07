@@ -59,9 +59,9 @@ class DetailPage extends GetView<DetailsController> {
                   },
                 ),
                 const SizedBox(height: 10),
-                TasksForm(),
+                const TasksForm(),
                 const SizedBox(height: 10),
-                Expanded(
+                const Expanded(
                   child: DoingList(),
                 ),
               ],

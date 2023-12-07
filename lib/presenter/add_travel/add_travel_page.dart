@@ -27,8 +27,8 @@ class AddTravelPage extends StatelessWidget {
           child: Center(
             child: SingleChildScrollView(
               reverse: true,
-              physics: BouncingScrollPhysics(),
-              padding: EdgeInsets.fromLTRB(24, 50, 24, 24),
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.fromLTRB(24, 50, 24, 24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -40,22 +40,22 @@ class AddTravelPage extends StatelessWidget {
                       }
                       return null;
                     },
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       label: Text('Viagem'),
                     ),
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   PickDateTravel(
                     onTap: () {
                       controller.chooseDateRangePicker();
                     },
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   controller.getTravelColors(),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   ElevatedButton(
                     onPressed: controller.addTravelButton,
-                    child: Text('ADICIONAR'),
+                    child: const Text('ADICIONAR'),
                   ),
                 ],
               ),

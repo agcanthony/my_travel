@@ -11,7 +11,7 @@ import 'widgets/progress_task.dart';
 import 'widgets/sepator_tasks.dart';
 
 class ReportPage extends StatelessWidget {
-  ReportPage({Key? key}) : super(key: key);
+  const ReportPage({Key? key}) : super(key: key);
 
   static const routeName = '/report-pages';
 
@@ -51,7 +51,7 @@ class ReportPage extends StatelessWidget {
                               onPressed: () {
                                 control.getData();
                               },
-                              icon: Icon(Icons.autorenew),
+                              icon: const Icon(Icons.autorenew),
                             );
                           },
                         ),

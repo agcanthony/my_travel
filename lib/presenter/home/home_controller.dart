@@ -1,4 +1,7 @@
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -52,7 +55,7 @@ class HomeController extends GetxController {
 
       int selectedColorIndex = chipIndex.value;
       Color selectedColor = colors[selectedColorIndex];
-      String color = '#' + selectedColor.value.toRadixString(16).substring(2);
+      String color = '#${selectedColor.value.toRadixString(16).substring(2)}';
 
       await db.collection('travels').add(
         {
@@ -65,7 +68,9 @@ class HomeController extends GetxController {
       );
       getData();
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
   }
 
@@ -73,15 +78,17 @@ class HomeController extends GetxController {
     try {
       isLoading = true;
       String userId = AuthController.to.firebaseAuth.currentUser?.uid ?? '';
-      QuerySnapshot _taskSnap = await db
+      QuerySnapshot taskSnap = await db
           .collection('travels')
           .where('userId', isEqualTo: userId)
           .orderBy('travel')
           .get();
-      print('object $userId');
+      if (kDebugMode) {
+        print('object $userId');
+      }
       travelsList.clear();
 
-      for (var item in _taskSnap.docs) {
+      for (var item in taskSnap.docs) {
         TravelsModel travelsModel = TravelsModel(
           item.id,
           item['travel'],
@@ -99,7 +106,9 @@ class HomeController extends GetxController {
       isLoading = false;
       update();
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
   }
 
@@ -184,6 +193,7 @@ class HomeController extends GetxController {
 
   Future<void> deleteTravel(BuildContext context, TravelsModel travel) async {
     bool canCheckBiometrics = await auth.canCheckBiometrics;
+    // ignore: use_build_context_synchronously
     bool useBiometrics = await _showAuthenticationMethodBottomSheet(context);
 
     if (useBiometrics && canCheckBiometrics) {
@@ -224,7 +234,7 @@ class HomeController extends GetxController {
                     onPressed: () {
                       Get.back(result: true);
                     },
-                    icon: Icon(Icons.close),
+                    icon: const Icon(Icons.close),
                   ),
                 ),
                 ListTile(
@@ -268,9 +278,9 @@ class HomeController extends GetxController {
             TextFormField(
               controller: passwordController,
               obscureText: true,
-              decoration: InputDecoration(labelText: 'Senha'),
+              decoration: const InputDecoration(labelText: 'Senha'),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
                 AuthController.to.password = passwordController.text;
@@ -280,7 +290,7 @@ class HomeController extends GetxController {
 
                 Get.back();
               },
-              child: Text('Confirmar'),
+              child: const Text('Confirmar'),
             ),
           ],
         ),

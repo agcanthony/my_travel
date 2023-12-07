@@ -1,12 +1,14 @@
 library full_screen_image_null_safe;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/app_colors.dart';
 
 class FullScreenWidget extends StatelessWidget {
-  FullScreenWidget(
-      {required this.child,
+  const FullScreenWidget(
+      {super.key,
+      required this.child,
       this.backgroundColor = Colors.black,
       this.backgroundIsTransparent = true,
       this.disposeLevel});
@@ -29,10 +31,10 @@ class FullScreenWidget extends StatelessWidget {
                     : backgroundColor,
                 pageBuilder: (BuildContext context, _, __) {
                   return FullScreenPage(
-                    child: child,
                     backgroundColor: backgroundColor,
                     backgroundIsTransparent: backgroundIsTransparent,
                     disposeLevel: disposeLevel,
+                    child: child,
                   );
                 }));
       },
@@ -41,14 +43,15 @@ class FullScreenWidget extends StatelessWidget {
   }
 }
 
-enum DisposeLevel { High, Medium, Low }
+enum DisposeLevel { high, medium, low }
 
 class FullScreenPage extends StatefulWidget {
-  FullScreenPage(
-      {required this.child,
+  const FullScreenPage(
+      {super.key,
+      required this.child,
       this.backgroundColor = Colors.black,
       this.backgroundIsTransparent = true,
-      this.disposeLevel = DisposeLevel.Medium});
+      this.disposeLevel = DisposeLevel.medium});
 
   final Widget child;
   final Color backgroundColor;
@@ -56,10 +59,10 @@ class FullScreenPage extends StatefulWidget {
   final DisposeLevel? disposeLevel;
 
   @override
-  _FullScreenPageState createState() => _FullScreenPageState();
+  FullScreenPageState createState() => FullScreenPageState();
 }
 
-class _FullScreenPageState extends State<FullScreenPage> {
+class FullScreenPageState extends State<FullScreenPage> {
   double? initialPositionY = 0;
 
   double? currentPositionY = 0;
@@ -81,12 +84,13 @@ class _FullScreenPageState extends State<FullScreenPage> {
 
   setDisposeLevel() {
     setState(() {
-      if (widget.disposeLevel == DisposeLevel.High)
+      if (widget.disposeLevel == DisposeLevel.high) {
         disposeLimit = 300;
-      else if (widget.disposeLevel == DisposeLevel.Medium)
+      } else if (widget.disposeLevel == DisposeLevel.medium) {
         disposeLimit = 200;
-      else
+      } else {
         disposeLimit = 100;
+      }
     });
   }
 
@@ -108,14 +112,17 @@ class _FullScreenPageState extends State<FullScreenPage> {
     double tmp = positionYDelta < 0
         ? 1 - ((positionYDelta / 1000) * -1)
         : 1 - (positionYDelta / 1000);
-    print(tmp);
+    if (kDebugMode) {
+      print(tmp);
+    }
 
-    if (tmp > 1)
+    if (tmp > 1) {
       opacity = 1;
-    else if (tmp < 0)
+    } else if (tmp < 0) {
       opacity = 0;
-    else
+    } else {
       opacity = tmp;
+    }
 
     if (positionYDelta > disposeLimit || positionYDelta < -disposeLimit) {
       opacity = 0.5;
@@ -127,7 +134,7 @@ class _FullScreenPageState extends State<FullScreenPage> {
       Navigator.of(context).pop();
     } else {
       setState(() {
-        animationDuration = Duration(milliseconds: 300);
+        animationDuration = const Duration(milliseconds: 300);
         opacity = 1;
         positionYDelta = 0;
       });

@@ -22,9 +22,9 @@ class TasksForm extends StatelessWidget {
             TextFormField(
               controller: control.taskController,
               textInputAction: TextInputAction.done,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Adicionar Entrada',
-                prefixIcon: const Icon(
+                prefixIcon: Icon(
                   Icons.check_box_outline_blank_outlined,
                   color: grey,
                 ),
@@ -36,7 +36,7 @@ class TasksForm extends StatelessWidget {
                 return null;
               },
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             ExpansionTile(
               // expanded: control.isExpanded.value, // Add this line
               onExpansionChanged: (value) => control.isExpanded.value = value,
@@ -50,24 +50,24 @@ class TasksForm extends StatelessWidget {
                 TextFormField(
                   controller: control.descriptionController,
                   textInputAction: TextInputAction.done,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Descrição - (Opcional)',
-                    prefixIcon: const Icon(
+                    prefixIcon: Icon(
                       Icons.check_box_outline_blank_outlined,
                       color: grey,
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Row(
                   children: [
                     Expanded(
                       child: TextFormField(
                         controller: control.dateController,
                         textInputAction: TextInputAction.done,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Data',
-                          prefixIcon: const Icon(
+                          prefixIcon: Icon(
                             Icons.check_box_outline_blank_outlined,
                             color: grey,
                           ),
@@ -92,14 +92,14 @@ class TasksForm extends StatelessWidget {
                         },
                       ),
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Expanded(
                       child: TextFormField(
                         controller: control.timeController,
                         textInputAction: TextInputAction.done,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Horário',
-                          prefixIcon: const Icon(
+                          prefixIcon: Icon(
                             Icons.check_box_outline_blank_outlined,
                             color: grey,
                           ),
@@ -115,6 +115,7 @@ class TasksForm extends StatelessWidget {
                             initialTime: TimeOfDay.now(),
                           );
                           if (pickedTime != null) {
+                            // ignore: use_build_context_synchronously
                             String formattedTime = pickedTime.format(context);
                             control.timeController.text = formattedTime;
                           }
@@ -123,15 +124,15 @@ class TasksForm extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () {
                     control.saveTask();
                     control.collapseExpansionTile();
                   },
-                  child: Text('Salvar'),
+                  child: const Text('Salvar'),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
               ],
             ),
           ],

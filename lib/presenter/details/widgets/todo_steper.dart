@@ -9,7 +9,7 @@ class TodoSteper extends StatelessWidget {
   final int totalSteps;
   final int currentStep;
 
-  TodoSteper({
+  const TodoSteper({
     Key? key,
     required this.title,
     required this.totalSteps,

@@ -18,19 +18,19 @@ class GalleryButtons extends StatelessWidget {
       children: [
         ElevatedButton.icon(
           onPressed: camera,
-          icon: Icon(
+          icon: const Icon(
             Icons.camera_alt_outlined,
             color: lilyWhite,
           ),
-          label: PrimaryText('Camera'),
+          label: const PrimaryText('Camera'),
         ),
         ElevatedButton.icon(
           onPressed: gallery,
-          icon: Icon(
+          icon: const Icon(
             Icons.image_outlined,
             color: lilyWhite,
           ),
-          label: PrimaryText('Galeria'),
+          label: const PrimaryText('Galeria'),
         ),
       ],
     );

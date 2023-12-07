@@ -18,7 +18,7 @@ class AppTheme {
       primarySwatch: CustomMaterialColor.createMaterialColor(purple),
       accentColor: secondaryColor,
       backgroundColor: backgroundColor,
-      cardColor: Color(0xFFDEE6F8),
+      cardColor: const Color(0xFFDEE6F8),
       errorColor: Colors.red,
       brightness: Brightness.light,
     ),
@@ -98,7 +98,7 @@ class AppTheme {
       primarySwatch: CustomMaterialColor.createMaterialColor(purple),
       accentColor: secondaryColor,
       backgroundColor: scaffoldDarkBackground,
-      cardColor: Color.fromARGB(255, 33, 33, 33),
+      cardColor: const Color.fromARGB(255, 33, 33, 33),
       errorColor: Colors.red,
       brightness: Brightness.dark,
     ),
@@ -162,8 +162,8 @@ class AppTheme {
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: defaultIconColor,
     ),
-    chipTheme: ChipThemeData(
-      shape: const RoundedRectangleBorder(
+    chipTheme: const ChipThemeData(
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(50),
         ),
@@ -171,8 +171,8 @@ class AppTheme {
       showCheckmark: true,
       elevation: 5,
       pressElevation: 5,
-      padding: const EdgeInsets.all(4),
-      labelPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      padding: EdgeInsets.all(4),
+      labelPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       disabledColor: lilyWhite,
       surfaceTintColor: lilyWhite,
       checkmarkColor: lilyWhite,

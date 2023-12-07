@@ -12,7 +12,7 @@ class ImageWidget extends StatelessWidget {
         height: 200,
         width: double.infinity,
         child: ColoredBox(
-          color: Color(0xff263046),
+          color: const Color(0xff263046),
           child: child,
         ),
       ),

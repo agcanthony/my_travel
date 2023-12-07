@@ -41,7 +41,7 @@ class SignupPage extends StatelessWidget {
                       color: changeTheme
                           ? scaffoldDarkBackground
                           : lightScaffoldBackground(context),
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(32),
                         topRight: Radius.circular(32),
                       ),
@@ -62,7 +62,7 @@ class SignupPage extends StatelessWidget {
                             textInputAction: TextInputAction.done,
                             keyboardType: TextInputType.text,
                             controller: control.nameControlller,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               label: Text('Usuário'),
                             ),
                           ),
@@ -79,7 +79,7 @@ class SignupPage extends StatelessWidget {
                             textInputAction: TextInputAction.done,
                             keyboardType: TextInputType.emailAddress,
                             controller: control.emailController,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               label: Text(
                                 'Email',
                               ),
@@ -99,10 +99,10 @@ class SignupPage extends StatelessWidget {
                             keyboardType: TextInputType.text,
                             controller: control.passwordController,
                             decoration: InputDecoration(
-                              label: Text('Senha'),
+                              label: const Text('Senha'),
                               suffixIcon: IconButton(
                                 onPressed: () {},
-                                icon: Icon(Icons.visibility_rounded),
+                                icon: const Icon(Icons.visibility_rounded),
                               ),
                             ),
                           ),
@@ -110,7 +110,7 @@ class SignupPage extends StatelessWidget {
                           ElevatedButton(
                             onPressed: () => control.register(
                                 control.email, control.password),
-                            child: Text('Sign Up'),
+                            child: const Text('Sign Up'),
                           ),
                           const SizedBox(height: 24),
                           TextButton(
@@ -124,10 +124,10 @@ class SignupPage extends StatelessWidget {
                                   color: changeTheme ? lilyWhite : black,
                                   fontSize: 16,
                                 ),
-                                children: [
+                                children: const [
                                   TextSpan(
                                     text: "Sign in",
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       color: defaultIconColor,
                                       fontSize: 16,
                                     ),

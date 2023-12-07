@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -35,20 +36,22 @@ class TaskDetailController extends GetxController {
 
   Future<void> getTasksData(String id) async {
     try {
-      var _taskSnap =
+      var taskSnap =
           await db.doc('travels/${id != '' ? id : null}/tasks/$taskName').get();
 
       taskModel = TasksModel(
         id,
-        _taskSnap.data()!['isDone'],
-        _taskSnap.data()!['task'],
-        description: _taskSnap.data()!['description'],
-        dateTime: _taskSnap.data()!['dateTime'].toDate(),
+        taskSnap.data()!['isDone'],
+        taskSnap.data()!['task'],
+        description: taskSnap.data()!['description'],
+        dateTime: taskSnap.data()!['dateTime'].toDate(),
       );
       isLoading = false;
       update();
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
   }
 
@@ -86,7 +89,7 @@ class TaskDetailController extends GetxController {
   Future<void> getImagesData(String id) async {
     try {
       String userId = AuthController.to.firebaseAuth.currentUser!.uid;
-      QuerySnapshot _imagesSnap = await db
+      QuerySnapshot imagesSnap = await db
           .collection('travels/$id/tasks/$taskName/images')
           .where('userId', isEqualTo: userId)
           .orderBy('imageUrls')
@@ -94,7 +97,7 @@ class TaskDetailController extends GetxController {
 
       imagesList.clear();
 
-      for (var item in _imagesSnap.docs) {
+      for (var item in imagesSnap.docs) {
         var imageUrls = List<String>.from(item['imageUrls'] ?? []);
         imagesList.addAll(imageUrls);
       }
@@ -102,7 +105,9 @@ class TaskDetailController extends GetxController {
       isLoading = false;
       update();
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
   }
 
@@ -175,10 +180,14 @@ class TaskDetailController extends GetxController {
   Future<void> addImage(String taskName, String image) async {
     imagesList.add(image);
     // File(image);
-    print('Task Name (before addImage): $taskName');
+    if (kDebugMode) {
+      print('Task Name (before addImage): $taskName');
+    }
     await addImageToTask(image);
     //  File(image);
-    print('Task Name (after addImage): $taskName');
+    if (kDebugMode) {
+      print('Task Name (after addImage): $taskName');
+    }
   }
 
   Future<void> deleteImage(String image) async {
@@ -195,6 +204,7 @@ class TaskDetailController extends GetxController {
           .where('imageUrls', arrayContains: image)
           .get()
           .then((QuerySnapshot querySnapshot) {
+        // ignore: avoid_function_literals_in_foreach_calls
         querySnapshot.docs.forEach((doc) async {
           await doc.reference.update({
             'imageUrls': FieldValue.arrayRemove([image]),
@@ -216,7 +226,7 @@ class TaskDetailController extends GetxController {
   ) async {
     bool confirmDelete = await Get.defaultDialog(
       title: 'Confirmar Exclusão',
-      content: Text('Você tem certeza que quer deletar essa image?'),
+      content: const Text('Você tem certeza que quer deletar essa image?'),
       textConfirm: 'Sim',
       textCancel: 'Não',
       onConfirm: () async {
@@ -230,9 +240,13 @@ class TaskDetailController extends GetxController {
     );
 
     if (confirmDelete == true) {
-      print('Image deleted!');
+      if (kDebugMode) {
+        print('Image deleted!');
+      }
     } else {
-      print('Image not deleted.');
+      if (kDebugMode) {
+        print('Image not deleted.');
+      }
     }
   }
 }

@@ -23,7 +23,7 @@ class PickDateTravel extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50),
             border: Border.all(
-              color: changeTheme ? lilyWhite : Color(0xFF03DAC6),
+              color: changeTheme ? lilyWhite : const Color(0xFF03DAC6),
               width: 0.5,
             ),
           ),
@@ -44,7 +44,7 @@ class PickDateTravel extends StatelessWidget {
                         size: 10.0.tx,
                         color: changeTheme ? lilyWhite : black,
                       ),
-                      Text(' / '),
+                      const Text(' / '),
                       PrimaryText(
                         DateFormat('dd-MM-yyyy')
                             .format(HomeController.to.dateRange.value.end)
@@ -55,7 +55,7 @@ class PickDateTravel extends StatelessWidget {
                     ],
                   ),
                 ),
-                Icon(
+                const Icon(
                   Icons.calendar_month_outlined,
                   color: defaultIconColor,
                 ),
