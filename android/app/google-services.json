@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "825821063994",
+    "project_id": "travels-diary-4567d",
+    "storage_bucket": "travels-diary-4567d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:825821063994:android:11c67f78f3c533c0c07e03",
+        "android_client_info": {
+          "package_name": "com.thaysg.my_travels"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "825821063994-apk73e30oljsth03hefstm508hpr7tcl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-KEgDbfHT5PWxx2BpX1Vl7lleNnuNIsQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "825821063994-apk73e30oljsth03hefstm508hpr7tcl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
